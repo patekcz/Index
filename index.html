@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Point Zero</title>
+    <link rel="icon" href="icon.png" type="image/x-icon">
     <style>
         body {
             background-color: black;
@@ -11,9 +12,61 @@
             height: 100vh;
         }
     </style>
-    <link rel="icon" href="icon.png" type="image/x-icon">
 </head>
 <body>
+    <script>
+        function updateTitle() {
+            const timeInterval = setInterval(() => {
+                const now = new Date();
+                document.title = now.toLocaleTimeString();
+            }, 1000);
+            
+            return timeInterval;
+        }
+
+        function typeTitle(text) {
+            let index = 0;
+            return new Promise(resolve => {
+                const interval = setInterval(() => {
+                    if (index < text.length) {
+                        document.title = text.substring(0, index + 1);
+                        index++;
+                    } else {
+                        clearInterval(interval);
+                        resolve();
+                    }
+                }, 100);
+            });
+        }
+
+        async function startSequence() {
+            while (true) {
+                await new Promise(resolve => setTimeout(resolve, 10000));
+                
+                const timeInterval = updateTitle();
+                
+                await new Promise(resolve => setTimeout(resolve, 10000));
+                
+                clearInterval(timeInterval);
+                
+                await typeTitle("Hello world");
+                
+                await new Promise(resolve => setTimeout(resolve, 5000));
+                
+                await typeTitle("Kiss asuro <3");
+                
+                await new Promise(resolve => setTimeout(resolve, 5000));
+                
+                await typeTitle("Point Zero");
+                
+                await new Promise(resolve => setTimeout(resolve, 10000));
+                
+                document.title = "Point Zero";
+            }
+        }
+
+        window.onload = startSequence;
+    </script>
 </body>
 </html>
 
