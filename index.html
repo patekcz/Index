@@ -41,7 +41,7 @@
 
         async function startSequence() {
             while (true) {
-                await new Promise(resolve => setTimeout(resolve, 10000));
+                await new Promise(resolve => setTimeout(resolve, 30000));
                 
                 const timeInterval = updateTitle();
                 
@@ -49,17 +49,9 @@
                 
                 clearInterval(timeInterval);
                 
-                await typeTitle("Hello world");
-                
-                await new Promise(resolve => setTimeout(resolve, 5000));
-                
                 await typeTitle("Kiss asuro <3");
                 
-                await new Promise(resolve => setTimeout(resolve, 5000));
-                
-                await typeTitle("Point Zero");
-                
-                await new Promise(resolve => setTimeout(resolve, 10000));
+                await new Promise(resolve => setTimeout(resolve, 30000));
                 
                 document.title = "Point Zero";
             }
